@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import styles from '../styles/CreateStyle';
+import { createPerson } from '../api/service';
 
 const CreateScreen = ({ navigation }) => {
   const [firstname, setFirstname] = useState('');
@@ -15,22 +16,11 @@ const CreateScreen = ({ navigation }) => {
     };
 
     try {
-      const response = await fetch('http://192.168.0.147/people', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newPerson),
-      });
-
-      if (response.ok) {
-        Alert.alert('Sucesso', 'Pessoa criada com sucesso!');
-        navigation.goBack();
-      } else {
-        Alert.alert('Erro', 'Falha ao criar a pessoa.');
-      }
+      await createPerson(newPerson);
+      Alert.alert('Sucesso', 'Pessoa criada com sucesso!');
+      navigation.goBack();
     } catch (error) {
-      Alert.alert('Erro', 'Erro de conexão.');
+      Alert.alert('Erro', 'Falha ao criar a pessoa.');
     }
   };
 
@@ -55,10 +45,12 @@ const CreateScreen = ({ navigation }) => {
         value={email}
         onChangeText={setEmail}
       />
-      <Button
-        title="Salvar"
+      <TouchableOpacity
+        style={styles.button}
         onPress={handleSave}
-      />
+      >
+        <Text style={styles.buttonText}>Salvar</Text>
+      </TouchableOpacity>
     </View>
   );
 };

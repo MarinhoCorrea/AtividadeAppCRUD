@@ -5,24 +5,35 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
     justifyContent: 'center',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#e0e0e0', // Cinza mais escuro
   },
   title: {
     fontSize: 28,
     fontWeight: '300',
     marginBottom: 32,
-    color: '#1a1a1a',
+    color: '#333333', // Cinza escuro
     letterSpacing: 0.5,
   },
   input: {
     borderWidth: 1,
-    borderColor: '#e0e0e0',
+    borderColor: '#cccccc', // Cinza médio
     padding: 14,
     marginBottom: 16,
     fontSize: 16,
-    color: '#333',
-    backgroundColor: '#fafafa',
-    borderRadius: 4,
+    color: '#333333',
+    backgroundColor: '#f0f0f0', // Cinza claro
+    borderRadius: 8, // Mais arredondado
+  },
+  button: {
+    backgroundColor: '#666666', // Cinza escuro
+    padding: 12,
+    borderRadius: 25, // Muito arredondado
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

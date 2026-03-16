@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import styles from '../styles/AddEditStyle';
+import { updatePerson } from '../api/service';
 
 const AddEditScreen = ({ route, navigation }) => {
   const { person } = route.params;
@@ -17,22 +18,11 @@ const AddEditScreen = ({ route, navigation }) => {
     };
 
     try {
-      const response = await fetch(`http://192.168.0.147/people/${person.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedPerson),
-      });
-
-      if (response.ok) {
-        Alert.alert('Sucesso', 'Informações salvas com sucesso!');
-        navigation.goBack();
-      } else {
-        Alert.alert('Erro', 'Falha ao salvar as informações.');
-      }
+      await updatePerson(person.id, updatedPerson);
+      Alert.alert('Sucesso', 'Informações salvas com sucesso!');
+      navigation.goBack();
     } catch (error) {
-      Alert.alert('Erro', 'Erro de conexão.');
+      Alert.alert('Erro', 'Falha ao salvar as informações.');
     }
   };
 
@@ -57,10 +47,12 @@ const AddEditScreen = ({ route, navigation }) => {
         value={email}
         onChangeText={setEmail}
       />
-      <Button
-        title="Salvar"
+      <TouchableOpacity
+        style={styles.button}
         onPress={handleSave}
-      />
+      >
+        <Text style={styles.buttonText}>Salvar</Text>
+      </TouchableOpacity>
     </View>
   );
 };
