@@ -64,3 +64,6 @@ A solução implementa um fluxo completo de CRUD:
 - **Navegação**: Stack Navigator para transições suaves entre telas.
 
 Isso resolve o problema de forma escalável, permitindo fácil substituição do backend mock por uma API real.
+
+## Link Video
+- https://youtube.com/shorts/af9_3zqPb9k?si=7Hr0TiNaR8154pxp
