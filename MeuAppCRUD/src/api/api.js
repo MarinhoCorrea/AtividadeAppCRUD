@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: "https://beauty-realm-counts-zen.trycloudflare.com",
+  baseURL: "https://genre-diesel-dig-yields.trycloudflare.com",
 });
 
 export default api;

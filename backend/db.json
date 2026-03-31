@@ -1,11 +1,11 @@
 {
   "people": [
     {
-      "id": "3931",
-      "firstname": "Denise ",
-      "lastname": "Rodrigues ",
-      "email": "Ahjdjd",
-      "phone": "17728393"
+      "firstname": "Rafa",
+      "lastname": "Cruz",
+      "email": "Agc.gmail.com",
+      "phone": "199890457494",
+      "id": "afcf"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

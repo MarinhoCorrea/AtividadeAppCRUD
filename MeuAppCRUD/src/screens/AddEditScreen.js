@@ -13,6 +13,11 @@ const AddEditScreen = ({ route, navigation }) => {
   const [loading, setLoading] = useState(false);
 
   const handleSave = async () => {
+    if (!firstname || !lastname || !email || !phone) {
+      Alert.alert('Erro', 'Todos os campos são obrigatórios. Por favor, preencha todos os campos.');
+      return;
+    }
+
     const updatedPerson = {
       firstname,
       lastname,

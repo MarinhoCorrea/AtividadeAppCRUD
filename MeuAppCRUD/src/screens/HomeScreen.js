@@ -14,9 +14,10 @@ const HomeScreen = ({ navigation }) => {
     setError(null);
     try {
       const data = await getAllPeople();
+      await new Promise(resolve => setTimeout(resolve, 2000));
       setPeople(data);
     } catch (error) {
-      setError('Não foi possível carregar os dados. Verifique sua conexão.');
+        setError('Não foi possível carregar os dados. Verifique sua conexão.');
     } finally {
       setLoading(false);
     }
@@ -53,13 +54,14 @@ const HomeScreen = ({ navigation }) => {
 
   const filteredPeople = people.filter((person) => {
     const searchLower = searchTerm.toLowerCase();
-    return person.firstname.toLowerCase().includes(searchLower);
+    return person.firstname.toLowerCase().includes(searchLower) || person.lastname.toLowerCase().includes(searchLower);
   });
 
   const renderPerson = ({ item }) => (
     <View style={styles.personContainer}>
       <Text>Nome: {item.firstname} {item.lastname}</Text>
       <Text>Email: {item.email}</Text>
+      <Text>Telefone: {item.phone}</Text>
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('AddEdit', { person: item })}
@@ -80,7 +82,7 @@ const HomeScreen = ({ navigation }) => {
       <Text style={styles.title}>Lista de Pessoas</Text>
       <TextInput
         style={styles.searchInput}
-        placeholder="Pesquisar por primeiro nome..."
+        placeholder="Pesquisar por  nome..."
         value={searchTerm}
         onChangeText={setSearchTerm}
       />
